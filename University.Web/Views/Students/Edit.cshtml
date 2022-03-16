@@ -1,0 +1,43 @@
+﻿@model University.BL.DTOs.StudentDTO
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<form action="/Students/Edit" method="post">
+
+    <div class="form-row">
+
+         @Html.HiddenFor(m => m.ID)
+
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.LastName)
+            @Html.EditorFor(m => m.LastName, new { HtmlAttributes = new { @class = "form-control", @placeholder = "Enter the LastName", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })        
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.FirstMidName)
+            @Html.EditorFor(m => m.FirstMidName, new { HtmlAttributes = new { @class = "form-control", @placeholder = "Enter the FirstName", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(m => m.FirstMidName, "", new { @class = "text-danger" })
+  
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.EnrollmentDate)
+            @Html.EditorFor(m => m.EnrollmentDate, new { HtmlAttributes = new { @class = "form-control", @placeholder = "Enter the Enrollment", @autocomplete = "off" } })
+   
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-12">
+            <br />
+            <input type="submit" name="btnEdit" value="Edit" class="btn btn-primary" />
+            @Html.ActionLink("Back", "Index", "Students", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+
+</form>

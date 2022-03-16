@@ -1,0 +1,78 @@
+﻿@model IEnumerable<University.BL.DTOs.CourseDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Courses</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Credits)
+        </th>
+        <th>Options</th>
+
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credits)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CourseID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CourseID }, new { @class = "btn btn-danger" }) |               
+                @Html.ActionLink("Instructors", "Instructors", new { id = item.CourseID }, new { @class = "btn btn-info" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+@if (ViewBag.Instructors != null)
+{
+    var courseDTO = (List<University.BL.DTOs.InstructorDTO>)ViewBag.Instructors;
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Last Name</th>
+                <th>FirstMid Nmae</th>
+                <th>Hire Date</th>                
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in courseDTO)
+            {
+                <tr>                    
+                    <td>@item.ID</td>
+                    <td>@item.LastName</td>
+                    <td>@item.FirstMidName</td>
+                    <td>@item.HireDate</td>                   
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
